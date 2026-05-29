@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Nhập và Phân Tích URL</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .form-container {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 500px;
+    }
+    h2 {
+      margin-top: 0;
+      color: #1a73e8;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    p {
+      color: #5f6368;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    input[type="url"] {
+      padding: 12px 15px;
+      border: 1px solid #dadce0;
+      border-radius: 4px;
+      font-size: 16px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    input[type="url"]:focus {
+      border-color: #1a73e8;
+      box-shadow: 0 0 0 2px rgba(26,115,232,0.2);
+    }
+    button {
+      background-color: #1a73e8;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    button:hover {
+      background-color: #1557b0;
+    }
+    #result {
+      margin-top: 15px;
+      padding: 10px;
+      border-radius: 4px;
+      display: none;
+      font-size: 14px;
+    }
+    .success {
+      background-color: #e6f4ea;
+      color: #137333;
+      border: 1px solid #ceead6;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>Công cụ phân tích URL</h2>
+    <p>Vui lòng nhập đường dẫn URL của bạn vào ô bên dưới để bắt đầu bóc tách dữ liệu.</p>
+    
+    <form id="urlForm" onsubmit="return giảLậpPhânTích(event)">
+      <div class="form-group">
+        <input 
+          type="url" 
+          id="urlInput" 
+          placeholder="Ví dụ: https://example.com/products/list?page=2#top" 
+          required
+        >
+        <button type="submit">Phân tích URL</button>
+      </div>
+    </form>
+
+    <div id="result" class="success"></div>
+  </div>
+
+  <script>
+    function giảLậpPhânTích(event) {
+      // Ngăn chặn form gửi dữ liệu load lại trang
+      event.preventDefault(); 
+      
+      // Lấy giá trị URL từ ô input
+      const urlValue = document.getElementById('urlInput').value;
+      const resultDiv = document.getElementById('result');
+      
+      // Hiển thị phản hồi giả lập trực quan
+      resultDiv.style.display = 'block';
+      resultDiv.innerHTML = `<strong>Hệ thống nhận diện thành công!</strong><br>Đang tiến hành phân tích đường dẫn: <em>${urlValue}</em>`;
+      
+      console.log("Đã kích hoạt nút phân tích cho URL:", urlValue);
+    }
+  </script>
+
+</body>
+</html>
